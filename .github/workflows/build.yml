@@ -17,24 +17,32 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v2
 
-      - name: Install Dependency
+      #          sudo apt-get -qq remove --purge azure-cli ghc zulu* hhvm llvm* firefox google* \
+      #          dotnet* powershell mysql* php* mssql-tools msodbcsql17 android*
+      - name: Build Environment Initialization
         run: |
-          docker rmi $(docker images -q)
-          sudo apt-get -qq remove --purge azure-cli ghc zulu* hhvm llvm* firefox google* \
-          dotnet* powershell mysql* php* mssql-tools msodbcsql17 android*
+          sudo apt-get -qq remove --purge mysql* php* google* firefox ghc azure-cli \
+          dotnet* powershell ruby-full zulu* hhvm llvm*
+
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /var/lib/docker
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/hostedtoolcache/go /opt/hostedtoolcache/Ruby /opt/hostedtoolcache/node
+
           sudo apt-get install -qq -y build-essential asciidoc binutils bzip2 gawk gettext \
           git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 \
           libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full \
           msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf \
           automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
+
           sudo apt-get -qq autoremove --purge
           sudo apt-get -qq clean
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /usr/local/lib/android
           df -h
 
       - name: Build Immortalwrt
         run: |
           chmod +x build.sh && ./build.sh
+          df -h
 
       - name: Upload bin
         uses: actions/upload-artifact@v2
