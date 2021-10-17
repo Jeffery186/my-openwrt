@@ -53,7 +53,9 @@ jobs:
           wget https://www.7-zip.org/a/7z2103-linux-x64.tar.xz
           tar -xf 7z2103-linux-x64.tar.xz
           chmod +x 7zz
-          ./7zz a immortalwrt.7z immortalwrt -v2g
+          tar -czvf immortalwrt.tar.gz immortalwrt
+          rm -rf immortalwrt
+          ./7zz a immortalwrt.7z immortalwrt.tar.gz -v2g
           ls
 
       - name: Release
