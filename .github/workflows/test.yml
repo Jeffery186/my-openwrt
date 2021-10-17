@@ -20,4 +20,4 @@ jobs:
 
       - name: cli
         run: |
-        gh auth login --with-token ${CI_TOKEN}
+          gh auth login --with-token ${CI_TOKEN}
