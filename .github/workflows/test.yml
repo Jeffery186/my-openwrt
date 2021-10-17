@@ -22,12 +22,11 @@ jobs:
           wget https://www.7-zip.org/a/7z2103-linux-x64.tar.xz
           tar -xf 7z2103-linux-x64.tar.xz
           chmod +x 7zz
-          ./7zz a gitea.7z gitea
-          ll
+          ./7zz a gitea.7z gitea -v100m
 
-#      - name: Release
-#        uses: softprops/action-gh-release@v1
-#        with:
-#          tag_name: v0.1.1
-#          files: |
-#
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v0.1.1
+          files: |
+            *.7z
