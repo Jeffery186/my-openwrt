@@ -1,5 +1,8 @@
 name: Build-OpenWrt-ImmortalWrt
 
+env:
+  TZ: Asia/Shanghai
+
 on:
   push:
     branches:
