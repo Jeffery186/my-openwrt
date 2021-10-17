@@ -1,0 +1,21 @@
+name: debug
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+#  schedule:
+#    # * is a special character in YAML so you have to quote this string
+#    - cron: '0 15 * * 1,2,4,5,6'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
