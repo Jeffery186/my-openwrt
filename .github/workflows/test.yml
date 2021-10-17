@@ -11,8 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    env:
-      GITHUB_TOKEN: ${{ secrets.GHCI_TOKEN }}
 
     steps:
       - name: Clone Repository
@@ -20,6 +18,7 @@ jobs:
 
       - name: cli
         run: |
-          gh auth login --with-token
           wget https://github.com/ibook86/my-openwrt/releases/download/kernel-5.4.150/immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
           gh release create v1.0 -F immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
+        env:
+          GITHUB_TOKEN: ${{secrets.GHCI_TOKEN}}
