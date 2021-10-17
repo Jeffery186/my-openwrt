@@ -28,6 +28,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v0.1.1
+          tag_name: v0.1.2
           files: |
-            *.7z.001
+            gitea.7z.*
