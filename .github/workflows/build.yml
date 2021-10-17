@@ -3,11 +3,12 @@ name: Build-OpenWrt-ImmortalWrt
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: '0 15 * * 1,2,4,5,6'
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -45,3 +46,19 @@ jobs:
         with:
           name: manifest-${{ env.FILE_DATE }}
           path: /home/runner/work/my-openwrt/my-openwrt/immortalwrt/bin/targets/ramips/mt7621/immortalwrt-ramips-mt7621-d-team_newifi-d2.manifest
+
+      - name: 7zz
+        run: |
+          cd /home/runner/work/my-openwrt/my-openwrt/
+          wget https://www.7-zip.org/a/7z2103-linux-x64.tar.xz
+          tar -xf 7z2103-linux-x64.tar.xz
+          chmod +x 7zz
+          ./7zz a immortalwrt.7z immortalwrt -v2g
+          ls
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.FILE_DATE }}
+          files: |
+            immortalwrt.7z.*
