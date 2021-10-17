@@ -1,0 +1,29 @@
+name: Build-Test
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    env:
+      BIN_PATH: /home/runner/work/my-openwrt/my-openwrt
+
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+
+      - name: git
+        run: |
+          wget https://github.com/ibook86/my-openwrt/releases/download/kernel-5.4.150/immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v0.1.3
+          files: |
+            ${{ env.BIN_PATH }}/immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
+            ${{ env.BIN_PATH }}/immortalwrt-ramips-mt7621-d-team_newifi-d2.manifest
