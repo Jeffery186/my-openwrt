@@ -15,12 +15,12 @@ jobs:
     steps:
       - name: Clone Repository
         uses: actions/checkout@v2
+
       - name: wget
         run: |
           wget https://github.com/ibook86/my-openwrt/releases/download/kernel-5.4.150/immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
