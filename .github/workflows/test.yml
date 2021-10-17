@@ -1,4 +1,4 @@
-name: Build-OpenWrt-ImmortalWrt
+name: Build-Test
 
 on:
   push:
@@ -16,10 +16,8 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v2
 
-      - name: cli
-        run: |
-          wget https://github.com/ibook86/my-openwrt/releases/download/kernel-5.4.150/immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
-          cp immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin immortalwrt.bin
-          gh release create v1.0.1 -F immortalwrt.bin
-        env:
-          GITHUB_TOKEN: ${{secrets.GHCI_TOKEN}}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
