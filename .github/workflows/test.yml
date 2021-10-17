@@ -23,6 +23,7 @@ jobs:
           tar -xf 7z2103-linux-x64.tar.xz
           chmod +x 7zz
           ./7zz a gitea.7z gitea -v100m
+          ls
 
       - name: Release
         uses: softprops/action-gh-release@v1
