@@ -1,9 +1,9 @@
-name: Test2
+name: Test3
 
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
 
 jobs:
@@ -38,21 +38,17 @@ jobs:
           path: |
             immortalwrt.img
           key: ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }}
-#
-#      - name: Test Cache
-#        run: |
-#          ls -l --block-size=M
-#          df -h
-#          unsquashfs -d immortalwrt immortalwrt.img
-#          df -h
-#          ls -l --block-size=M
 
       - name: Test Cache
         run: |
           ls -l --block-size=M
           df -h
-          sudo mkdir immortalwrt
-          sudo mount -t squashfs immortalwrt.img /home/runner/work/my-openwrt/my-openwrt/immortalwrt -o loop
-          ls
+          unsquashfs -d immortalwrt immortalwrt.img
+          df -h
           ls -l --block-size=M
-          cd immortalwrt && git pull
+
+          cd /home/runner/work/my-openwrt/my-openwrt/immortalwrt/package/base-files/files/bin && \
+          wget -O config_generate https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-21.02/package/base-files/files/bin/config_generate
+          cd /home/runner/work/my-openwrt/my-openwrt/immortalwrt
+          git pull && ./scripts/feeds update -a && ./scripts/feeds install -a
+          ls -l --block-size=M
