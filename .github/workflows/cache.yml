@@ -1,4 +1,4 @@
-name: OpenWrt-Builder
+name: Builder-Cache
 
 env:
   TZ: Asia/Shanghai
