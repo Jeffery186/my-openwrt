@@ -71,6 +71,7 @@ jobs:
           mksquashfs immortalwrt immortalwrt.img
           df -h
           ls -l --block-size=M
+          cd immortalwrt && ls -l --block-size=M
 
       - name: Cache immortalwrt.img
         uses: actions/cache@v2
