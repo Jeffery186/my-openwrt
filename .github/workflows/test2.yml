@@ -43,6 +43,7 @@ jobs:
         run: |
           ls -l --block-size=M
           df -h
+          sudo mkdir immortalwrt
           sudo mount -t immortalwrt.img /home/runner/work/my-openwrt/my-openwrt/immortalwrt -o loop
           ls
           ls -l --block-size=M
