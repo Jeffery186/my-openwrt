@@ -76,3 +76,4 @@ jobs:
         with:
           path: |
             immortalwrt.img
+          key: ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }}
