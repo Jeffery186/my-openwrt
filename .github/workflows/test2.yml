@@ -38,20 +38,21 @@ jobs:
           path: |
             immortalwrt.img
           key: ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }}
+#
+#      - name: Test Cache
+#        run: |
+#          ls -l --block-size=M
+#          df -h
+#          unsquashfs immortalwrt.img
+#          ls
+#          ls -l --block-size=M
 
       - name: Test Cache
         run: |
           ls -l --block-size=M
           df -h
-          unsquashfs immortalwrt.img
+          sudo mkdir immortalwrt
+          sudo mount -t squashfs immortalwrt.img /home/runner/work/my-openwrt/my-openwrt/immortalwrt -o loop
           ls
           ls -l --block-size=M
-
-#      - name: Test Cache
-#        run: |
-#          ls -l --block-size=M
-#          df -h
-#          sudo mkdir immortalwrt
-#          sudo mount -t squashfs immortalwrt.img /home/runner/work/my-openwrt/my-openwrt/immortalwrt -o loop
-#          ls
-#          ls -l --block-size=M
+          cd immortalwrt && git pull
