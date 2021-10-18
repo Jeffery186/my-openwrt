@@ -3,7 +3,7 @@ name: Build-Test
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
 #  schedule:
 #    # * is a special character in YAML so you have to quote this string
@@ -23,11 +23,4 @@ jobs:
           tar -xf 7z2103-linux-x64.tar.xz
           chmod +x 7zz
           ./7zz a gitea.7z gitea -v100m
-          ls
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v0.1.2
-          files: |
-            gitea.7z.*
+          ls ~/
