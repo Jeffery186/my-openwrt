@@ -59,12 +59,15 @@ jobs:
           name: manifest-${{ env.FILE_DATE }}
           path: /home/runner/work/my-openwrt/my-openwrt/immortalwrt/bin/targets/ramips/mt7621/immortalwrt-ramips-mt7621-d-team_newifi-d2.manifest
 
+      - name: tar
+        run: |
+          cd /home/runner/work/my-openwrt/my-openwrt/
+          tar -czf immortalwrt.tar.gz immortalwrt
+          rm -rf immortalwrt
+
       - name: 7zz
         run: |
           cd /home/runner/work/my-openwrt/my-openwrt/
-          tar -czvf immortalwrt.tar.gz immortalwrt
-          rm -rf immortalwrt
-
           wget https://www.7-zip.org/a/7z2103-linux-x64.tar.xz
           tar -xf 7z2103-linux-x64.tar.xz
           chmod +x 7zz
