@@ -68,7 +68,7 @@ jobs:
           wget https://www.7-zip.org/a/7z2103-linux-x64.tar.xz
           tar -xf 7z2103-linux-x64.tar.xz
           chmod +x 7zz
-          ./7zz a immortalwrt.7z immortalwrt.tar.gz -v2000m
+          ./7zz a immortalwrt.7z immortalwrt.tar.gz -v1.8g
           ls -l --block-size=M
           df -h
 
