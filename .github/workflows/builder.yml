@@ -71,7 +71,7 @@ jobs:
           wget https://www.7-zip.org/a/7z2103-linux-x64.tar.xz
           tar -xf 7z2103-linux-x64.tar.xz
           chmod +x 7zz
-          ./7zz a immortalwrt.7z immortalwrt.tar.gz -v1500m
+          ./7zz a immortalwrt.7z immortalwrt.tar.gz -v2000m
           ls -l --block-size=M
           df -h
 
@@ -80,4 +80,6 @@ jobs:
         with:
           tag_name: v${{ env.FILE_DATE }}
           files: |
-            immortalwrt.7z.*
+            immortalwrt.7z.001
+            immortalwrt.7z.002
+            immortalwrt.7z.003
