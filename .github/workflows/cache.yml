@@ -63,6 +63,7 @@ jobs:
         run: |
           cd /home/runner/work/my-openwrt/my-openwrt/immortalwrt
           sudo rm -rf ./tmp && rm -rf .config
+          sudo rm -rf dl
 
       - name: mksquashfs immortalwrt.img
         run: |
