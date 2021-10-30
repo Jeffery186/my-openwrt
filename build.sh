@@ -7,6 +7,7 @@ cd ${OP_BUILD_PATH}/immortalwrt
 rm -rf ./tmp && rm -rf .config
 mv ${OP_BUILD_PATH}/op.config ${OP_BUILD_PATH}/immortalwrt/.config
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+# make menuconfig
 make defconfig
 make -j8 download
 make -j$(nproc)
