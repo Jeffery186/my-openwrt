@@ -38,7 +38,7 @@ jobs:
           libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full \
           msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf \
           automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync \
-          squashfs-tools ccache
+          squashfs-tools ccache tree
 
           sudo apt-get -qq autoremove --purge
           sudo apt-get -qq clean
@@ -60,6 +60,16 @@ jobs:
           chmod +x build2.sh && ./build2.sh
           df -h
           ls -l --block-size=M
+
+      - name: tree
+        run: |
+          tree > tree.txt
+
+      - name: Upload tree.txt
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.FILE_DATE }}-tree.txt
+          path: tree.txt
 
       - name: Upload bin
         uses: actions/upload-artifact@v2
