@@ -1,4 +1,4 @@
-name: Builder-Cache
+name: Cache
 
 env:
   TZ: Asia/Shanghai
@@ -6,10 +6,10 @@ env:
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
   schedule:
-#    # * is a special character in YAML so you have to quote this string
+    #    # * is a special character in YAML so you have to quote this string
     - cron: '0 20 * * *'
 
 jobs:
