@@ -46,7 +46,7 @@ jobs:
 
       - name: Build Immortalwrt
         run: |
-          chmod +x build.sh && ./build.sh
+          chmod +x build-op2.sh && ./build-op2.sh
           df -h
 
       - name: Upload bin
