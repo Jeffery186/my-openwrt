@@ -82,6 +82,8 @@ jobs:
           path: |
             immortalwrt.img
           key: ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }}
+
+      - name: git push
         run: |
           echo ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }} > key.txt
           git config user.name github-actions
