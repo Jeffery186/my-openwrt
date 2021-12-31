@@ -85,7 +85,9 @@ jobs:
 
       - name: git push
         run: |
+          rm -rf immortalwrt
           echo ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }} > key.txt
+          rm -rf immortalwrt.img
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
