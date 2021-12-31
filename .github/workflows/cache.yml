@@ -6,7 +6,7 @@ env:
 on:
   push:
     branches:
-      - main
+      - cache
   workflow_dispatch:
   schedule:
     #    # * is a special character in YAML so you have to quote this string
@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Clone Repository
         uses: actions/checkout@v2
+        with:
+          ref: cache
 
       #          sudo apt-get -qq remove --purge azure-cli ghc zulu* hhvm llvm* firefox google* \
       #          dotnet* powershell mysql* php* mssql-tools msodbcsql17 android*
@@ -80,3 +82,10 @@ jobs:
           path: |
             immortalwrt.img
           key: ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }}
+        run: |
+          echo ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }} > key.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "update key.txt"
+          git push
