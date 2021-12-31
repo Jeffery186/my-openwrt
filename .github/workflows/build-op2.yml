@@ -49,7 +49,7 @@ jobs:
         with:
           path: |
             immortalwrt.img
-          key: Linux-e51a6d41bcc2f25359281cf064931bbb5c90a71d2573c6a22e5a8d12b9ebd3ab
+          key: Linux-4661e9986694ef1e50b585227c5be36ee6cd311f3e8e113a2a779133f8ee4cee
 #          key: ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }}
 
       - name: unsquashfs immortalwrt.img
