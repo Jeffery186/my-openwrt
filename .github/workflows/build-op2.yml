@@ -44,13 +44,17 @@ jobs:
           sudo apt-get -qq clean
           df -h
 
+      - name: Before Cache
+        run: |
+          chmod +x before_cache.sh && ./before_cache.sh
+
       - name: Cache immortalwrt.img
         uses: actions/cache@v2
         with:
           path: |
             immortalwrt.img
           key: ${{ env.CACHE_KEY }}
-#          key: ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }}
+      #          key: ${{ runner.os }}-${{ hashFiles('immortalwrt.img') }}
 
       - name: unsquashfs immortalwrt.img
         run: |
