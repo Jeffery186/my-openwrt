@@ -9,7 +9,7 @@ cd ${OP_BUILD_PATH}/immortalwrt
 git pull
 ./scripts/feeds update -a && ./scripts/feeds install -a
 rm -rf ./tmp && rm -rf .config
-mv ${OP_BUILD_PATH}/op2.config ${OP_BUILD_PATH}/immortalwrt/.config
+mv ${OP_BUILD_PATH}/adguard_clash.config ${OP_BUILD_PATH}/immortalwrt/.config
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 make defconfig
 make -j64 download
