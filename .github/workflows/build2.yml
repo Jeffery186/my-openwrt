@@ -45,7 +45,7 @@ jobs:
           df -h
 
       - name: Cache immortalwrt.img
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             immortalwrt.img
