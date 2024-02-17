@@ -49,13 +49,13 @@ jobs:
           df -h
 
       - name: Upload bin
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin-${{ env.FILE_DATE }}
           path: /home/runner/work/my-openwrt/my-openwrt/immortalwrt/bin/targets/ramips/mt7621/immortalwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
 
       - name: Upload manifest
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: manifest-${{ env.FILE_DATE }}
           path: /home/runner/work/my-openwrt/my-openwrt/immortalwrt/bin/targets/ramips/mt7621/immortalwrt-ramips-mt7621-d-team_newifi-d2.manifest
